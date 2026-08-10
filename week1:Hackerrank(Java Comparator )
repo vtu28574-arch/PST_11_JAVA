@@ -1,0 +1,79 @@
+import java.io.*; 
+import java.util.*; 
+import java.util.List;
+
+public class Solution {
+
+public static void main(String[] args) {
+
+    var players = new ArrayList<Players>();
+    Scanner sc = new Scanner(System.in);
+
+    int nums = Integer.parseInt(sc.nextLine());
+
+
+
+
+
+    while(nums > 0)
+    {
+        String[] input = sc.nextLine().trim().split("\\s+");
+        players.add(new Players(input[0], Integer.parseInt(input[1])));
+        nums--;
+
+
+
+    }
+
+    Collections.sort(players, (p1, p2) -> {
+        int result = Integer.compare(((Players) p2).getScore(), ((Players) p1).getScore());
+        if (result == 0)
+        {
+            return ((Players) p1).getName().compareTo(((Players) p2).getName());
+        }
+        return result;
+    });
+    for (Players p : players) {
+        System.out.println(p);
+    }
+    sc.close();
+
+}
+}
+
+class Players {
+
+private String name;
+private int score;
+
+
+public Players(String name, int score)
+{
+    this.name = name;
+    this.score = score;
+}
+
+public void setName(String name)
+{this.name = name;}
+
+public String getName()
+{return this.name;}
+
+public void setScore(int score)
+{this.score = score;}
+
+public int getScore()
+{return this.score;}
+
+public String toString()
+{return this.name + " " + this.score;}
+}
+
+
+OUTPUT:
+5
+amy 100
+david 100
+heraldo 50
+aakansha 75
+aleksa 150
